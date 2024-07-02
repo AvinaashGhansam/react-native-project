@@ -9,12 +9,17 @@ import {
   Button,
   Alert,
   Platform,
+  View,
 } from "react-native";
+import { useDeviceOrientation } from "@react-native-community/hooks";
 
 export default function App() {
+  const { landscape } = useDeviceOrientation();
+
   const handlePress = () => console.log("clicked...");
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.blueBox}></View>
       <Text onPress={handlePress}>Hello!!</Text>
       <TouchableOpacity onPress={() => console.log("image touched")}>
         <Image
@@ -47,5 +52,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.length : 0,
+  },
+  blueBox: {
+    backgroundColor: "dodgerblue",
+    width: "100%",
+    height: "30%",
   },
 });
